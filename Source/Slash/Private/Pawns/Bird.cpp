@@ -41,6 +41,18 @@ void ABird::MoveForward(float value)
 	}
 }
 
+void ABird::Turn(float value)
+{
+	AddControllerYawInput(value);
+
+}
+
+void ABird::LookUp(float value)
+{
+	AddControllerPitchInput(value);
+
+}
+
 void ABird::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -52,5 +64,8 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	PlayerInputComponent->BindAxis(FName("MoveForward"), this, &ABird::MoveForward);
+	PlayerInputComponent->BindAxis(FName("Turn"), this, &ABird::Turn);
+	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ABird::LookUp);
+
 }
 
